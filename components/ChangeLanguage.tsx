@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useState } from 'react';
+import React, { Fragment, useCallback, useEffect, useState } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 
 import { useTranslation } from 'react-i18next';
@@ -20,7 +20,7 @@ const ChangeLanguage = () => {
     (valueChange: any) => {
       console.log('valueChange :', '------->', valueChange);
       setSelected(valueChange);
-      // localStorage.set('lang', valueChange.key);
+      localStorage.setItem('lang', valueChange.key);
       i18n.changeLanguage(valueChange.key);
     },
     [i18n]
