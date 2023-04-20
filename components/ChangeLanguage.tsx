@@ -1,33 +1,47 @@
-import React, { Fragment, useCallback, useEffect, useState } from 'react';
+import React, { Fragment, useCallback, useState } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
+// import { useRecoilState } from 'recoil';
+// import { languageState } from '@/store/recoil/atoms/language';
 
 import { useTranslation } from 'react-i18next';
 
 import classNames from 'classnames';
 import CheckIcon from './CheckIcon';
+import LANGUAGES from '@/constant/translate';
 
-const langs = [
-  { key: 'en', name: 'ENGLISH' },
-  { key: 'ko', name: 'KOREA' },
-];
+import useLanguage from '@/hook/useLanguage';
 
 const ChangeLanguage = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
+  const UseLanguage = useLanguage();
 
-  const [selected, setSelected] = useState(langs[0]);
+  // const [selected, setSelected] = useState(langs[0]);
+  // const [language, setLanguage] = useRecoilState(languageState);
 
-  const onChangeLang = useCallback(
-    (valueChange: any) => {
-      console.log('valueChange :', '------->', valueChange);
-      setSelected(valueChange);
-      localStorage.setItem('lang', valueChange.key);
-      i18n.changeLanguage(valueChange.key);
-    },
-    [i18n]
-  );
+  // const onChangeLang = useCallback(
+  //   (valueChange: any) => {
+  //     console.log('valueChange :', '------->', valueChange);
+  //     setSelected(valueChange);
+  //     localStorage.setItem('lang', valueChange.key);
+  //     i18n.changeLanguage(valueChange.key);
+  //   },
+  //   [i18n]
+  // );
+
+  // const onChangeLang = useCallback(
+  //   (valueChange: any) => {
+  //     setLanguage(valueChange.key);
+  //     // setSelected(valueChange);
+  //     // localStorage.setItem('lang', valueChange.key);
+  //     i18n.changeLanguage(valueChange.key);
+  //   },
+  //   [i18n]
+  // );
+
+  // console.log('language :', '------->', language);
 
   return (
-    <Listbox value={selected} onChange={onChangeLang}>
+    <Listbox value={UseLanguage.language} onChange={UseLanguage.onChangeLang}>
       {({ open }) => (
         <>
           <Listbox.Label className='block text-sm font-medium leading-6 text-white-900'>
@@ -36,7 +50,9 @@ const ChangeLanguage = () => {
           <div className='relative mt-2'>
             <Listbox.Button className='relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-500 sm:text-sm sm:leading-6'>
               <span className='flex items-center'>
-                <span className='ml-3 block truncate'>{selected.name}</span>
+                <span className='ml-3 block truncate'>
+                  {UseLanguage.language.name}
+                </span>
               </span>
             </Listbox.Button>
 
@@ -48,7 +64,7 @@ const ChangeLanguage = () => {
               leaveTo='opacity-0'
             >
               <Listbox.Options className='absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'>
-                {langs.map((lang, index) => (
+                {LANGUAGES.map((lang, index) => (
                   <Listbox.Option
                     key={index}
                     className={({ active }) =>
