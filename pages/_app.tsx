@@ -47,7 +47,11 @@ export default function App({ Component, pageProps }: AppProps) {
     })();
   }, [i18n]);
 
-  return <Component {...pageProps} />;
+  return (
+    <div className='flex min-h-screen items-center justify-center'>
+      <Component {...pageProps} />
+    </div>
+  );
 
   // return (
   //   <Suspense fallback='loading'>
