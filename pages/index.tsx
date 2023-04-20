@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
 import ChangeLanguage from '@/components/ChangeLanguage';
+import { useRecoilValue } from 'recoil';
+import { languageState } from '@/store/recoil/atoms/language';
 
 export default function Home() {
   const { t } = useTranslation();
