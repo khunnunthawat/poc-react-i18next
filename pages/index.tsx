@@ -12,7 +12,7 @@ export default function Home() {
           <h3 className='text-white text-lg'>
             {t('title', { name: 'Bitnance' })}
           </h3>
-          <h3 className='text-white text-lg'>{t('description')}</h3>
+          <h3 className='text-white text-lg'>{t('translation.description')}</h3>
         </div>
         <div>
           <ChangeLanguage />
