@@ -1,11 +1,8 @@
-import React, { Fragment, useCallback, useState } from 'react';
-import { Listbox, Transition } from '@headlessui/react';
-// import { useRecoilState } from 'recoil';
-// import { languageState } from '@/store/recoil/atoms/language';
-
-import { useTranslation } from 'react-i18next';
-
 import classNames from 'classnames';
+import React, { Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Listbox, Transition } from '@headlessui/react';
+
 import CheckIcon from './CheckIcon';
 import LANGUAGES from '@/constant/translate';
 
@@ -14,31 +11,6 @@ import useLanguage from '@/hook/useLanguage';
 const ChangeLanguage = () => {
   const { t } = useTranslation();
   const UseLanguage = useLanguage();
-
-  // const [selected, setSelected] = useState(langs[0]);
-  // const [language, setLanguage] = useRecoilState(languageState);
-
-  // const onChangeLang = useCallback(
-  //   (valueChange: any) => {
-  //     console.log('valueChange :', '------->', valueChange);
-  //     setSelected(valueChange);
-  //     localStorage.setItem('lang', valueChange.key);
-  //     i18n.changeLanguage(valueChange.key);
-  //   },
-  //   [i18n]
-  // );
-
-  // const onChangeLang = useCallback(
-  //   (valueChange: any) => {
-  //     setLanguage(valueChange.key);
-  //     // setSelected(valueChange);
-  //     // localStorage.setItem('lang', valueChange.key);
-  //     i18n.changeLanguage(valueChange.key);
-  //   },
-  //   [i18n]
-  // );
-
-  // console.log('language :', '------->', language);
 
   return (
     <Listbox value={UseLanguage.language} onChange={UseLanguage.onChangeLang}>
